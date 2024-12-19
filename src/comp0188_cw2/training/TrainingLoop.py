@@ -127,6 +127,10 @@ def train(
                             "value":epoch_val_loss}
         })
 
+        # Log the learning rate
+        current_lrs = [param_group['lr'] for param_group in optimizer.param_groups]
+        logger.info(f"Epoch {epoch}: Learning Rates = {current_lrs}")
+      
         if scheduler:
             scheduler.step(epoch_val_loss)
 
